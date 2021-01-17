@@ -8,6 +8,7 @@ class DebugLogger:
 	debug_log_source_file = "logs/cory_debug.log"
 	debug_log_previous_root_source = "logs/prev_session/cory_debug.log_"
 
+	# If there's already a log from a previous one, we archive it and create a new one for the current run
 	def __init__(self):
 		move_old_log_file()
 		self.fileWriter = initialize_log_file()
@@ -21,7 +22,7 @@ class DebugLogger:
 			os.remove(DebugLogger.debug_log_source_file)
 		return open(DebugLogger.debug_log_source_file, "w")
 
-	def log_line(message, level=DebugLevel.INFO):
+	def log_debug(message, level=DebugLevel.INFO):
 		self.fileWriter.write(level + message + "\n")
 
 	def close_log_file():
